@@ -13,12 +13,16 @@ export const createSubcategory = async (req, res) => {
   }
 };
 
-// GET subcategories by category
+// ✅ GET subcategories by category (QUERY)
 export const getSubcategoriesByCategory = async (req, res) => {
   try {
-    const subcategories = await Subcategory.find({
-      category: req.params.categoryId
-    });
+    const { category } = req.query;
+
+    if (!category) {
+      return res.status(400).json({ message: "category id required" });
+    }
+
+    const subcategories = await Subcategory.find({ category });
     res.json(subcategories);
   } catch (err) {
     res.status(500).json({ message: "Failed to load subcategories" });
