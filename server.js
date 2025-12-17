@@ -8,7 +8,7 @@ import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import userOrderRoutes from "./routes/userOrderRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
-import folderRoutes from "./routes/FolderRoutes.js";
+import folderRoutes from "./routes/folderRoutes.js";
 import vendorRoutes from "./routes/vendorRoutes.js";
 import subcategoryRoutes from "./routes/subcategoryRoutes.js";
 
