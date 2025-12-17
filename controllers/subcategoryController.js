@@ -9,11 +9,11 @@ export const createSubcategory = async (req, res) => {
     });
     res.status(201).json(subcategory);
   } catch (err) {
-    res.status(500).json({ message: "Failed to create subcategory" });
+    res.status(500).json({ message: "Failed to create subcategory", error: err.message });
   }
 };
 
-// ✅ GET subcategories by category (QUERY)
+// GET subcategories by category (QUERY)
 export const getSubcategoriesByCategory = async (req, res) => {
   try {
     const { category } = req.query;
@@ -25,6 +25,6 @@ export const getSubcategoriesByCategory = async (req, res) => {
     const subcategories = await Subcategory.find({ category });
     res.json(subcategories);
   } catch (err) {
-    res.status(500).json({ message: "Failed to load subcategories" });
+    res.status(500).json({ message: "Failed to load subcategories", error: err.message });
   }
 };
