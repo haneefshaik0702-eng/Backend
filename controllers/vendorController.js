@@ -1,22 +1,39 @@
 import Vendor from "../models/Vendor.js";
+import Category from "../models/Category.js";
 
+// Create vendor
 export const createVendor = async (req, res) => {
-  try {
-    const vendor = await Vendor.create(req.body);
-    res.json(vendor);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+  const vendor = await Vendor.create({
+    name: req.body.name,
+    folder: req.body.folder
+  });
+  res.status(201).json(vendor);
 };
 
-export const getVendors = async (req, res) => {
-  try {
-    const filter = {};
-    if (req.query.folder) filter.folder = req.query.folder;
+// Update vendor
+export const updateVendor = async (req, res) => {
+  const vendor = await Vendor.findByIdAndUpdate(
+    req.params.id,
+    { name: req.body.name },
+    { new: true }
+  );
+  res.json(vendor);
+};
 
-    const vendors = await Vendor.find(filter);
-    res.json(vendors);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+// Delete vendor
+export const deleteVendor = async (req, res) => {
+  const vendor = await Vendor.findByIdAndDelete(req.params.id);
+  res.json({ message: "Vendor deleted", vendor });
+};
+
+// Get all vendors
+export const getVendors = async (req, res) => {
+  const vendors = await Vendor.find();
+  res.json(vendors);
+};
+
+// Get categories by vendor
+export const getCategoriesByVendor = async (req, res) => {
+  const categories = await Category.find({ vendor: req.params.vendorId });
+  res.json(categories);
 };
