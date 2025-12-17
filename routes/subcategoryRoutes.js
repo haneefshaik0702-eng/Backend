@@ -1,14 +1,15 @@
 import express from "express";
 import {
-  createSubCategory,
-  getSubCategoriesByCategory
-} from "../controllers/subCategoryController.js";
+  createSubcategory,
+  getSubcategoriesByCategory
+} from "../controllers/subcategoryController.js"; // match filename & export exactly
 
 const router = express.Router();
 
-router.post("/", createSubCategory);
+// Create subcategory
+router.post("/", createSubcategory);
 
-// ✅ ADD THIS
-router.get("/", getSubCategoriesByCategory);
+// Get subcategories by category
+router.get("/", getSubcategoriesByCategory);
 
 export default router;
