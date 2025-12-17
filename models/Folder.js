@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react";
-import api from "../api";
-import { Link } from "react-router-dom";
+import mongoose from "mongoose";
 
-export default function Folders() {
-  const [folders, setFolders] = useState([]);
+const folderSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, unique: true, trim: true },
+    description: { type: String, default: "" },
+  },
+  { timestamps: true }
+);
 
-  useEffect(() => {
-    api.get("/folders").then(res => setFolders(res.data));
-  }, []);
-
-  return (
-    <div style={{ padding: 20 }}>
-      <h2>Choose Service</h2>
-      {folders.map(f => (
-        <div key={f._id}>
-          <Link to={`/folders/${f._id}`}>{f.name}</Link>
-        </div>
-      ))}
-    </div>
-  );
-}
+const Folder = mongoose.model("Folder", folderSchema);
+export default Folder;
