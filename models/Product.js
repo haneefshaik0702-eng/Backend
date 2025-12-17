@@ -2,12 +2,14 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
+    name: {
+      type: String,
+      required: true,
+    },
 
-    folder: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Folder",
+    price: {
+      type: Number,
+      required: true,
     },
 
     vendor: {
@@ -25,9 +27,12 @@ const productSchema = new mongoose.Schema(
     subcategory: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subcategory",
+      required: true,
     },
 
-    image: String,
+    image: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
