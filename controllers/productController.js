@@ -1,14 +1,18 @@
 import Product from "../models/Product.js";
 
-// GET /api/products?subcategory=ID
 export const getProducts = async (req, res) => {
   try {
-    const { subcategory } = req.query;
+    const { vendor, category, subcategory } = req.query;
 
-    // Only return products for the requested subcategory
-    const filter = subcategory ? { subcategory } : {};
+    const filter = {};
+    if (vendor) filter.vendor = vendor;
+    if (category) filter.category = category;
+    if (subcategory) filter.subcategory = subcategory;
+
     const products = await Product.find(filter)
-      .populate("subcategory", "name"); // optional: populate subcategory name
+      .populate("vendor", "name")
+      .populate("category", "name")
+      .populate("subcategory", "name");
 
     res.json(products);
   } catch (err) {
