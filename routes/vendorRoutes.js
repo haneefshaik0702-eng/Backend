@@ -1,20 +1,8 @@
 import express from "express";
-import {
-  createVendor,
-  updateVendor,
-  deleteVendor,
-  getVendors,
-  getCategoriesByVendor
-} from "../controllers/vendorController.js";
+import { getVendors } from "../controllers/vendorController.js";
 
 const router = express.Router();
 
-router.post("/", createVendor);
-router.get("/", getVendors);
-router.put("/:id", updateVendor);
-router.delete("/:id", deleteVendor);
-
-// VERY IMPORTANT
-router.get("/:vendorId/categories", getCategoriesByVendor);
+router.get("/", getVendors); // ?folder=FOLDER_ID
 
 export default router;
