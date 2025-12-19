@@ -3,6 +3,6 @@ import { getProducts } from "../controllers/productController.js";
 
 const router = express.Router();
 
-router.get("/", getProducts); // GET /api/products?subcategory=ID
+router.get("/", getProducts); // ?subcategory=ID
 
 export default router;
