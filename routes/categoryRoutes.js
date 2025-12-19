@@ -1,12 +1,8 @@
 import express from "express";
-import {
-  createCategory,
-  getCategoriesByVendor
-} from "../controllers/categoryController.js";
+import { getCategories } from "../controllers/categoryController.js";
 
 const router = express.Router();
 
-router.post("/", createCategory);
-router.get("/", getCategoriesByVendor); // ✅ IMPORTANT
+router.get("/", getCategories); // ?vendor=VENDOR_ID
 
 export default router;
